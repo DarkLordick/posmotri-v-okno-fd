@@ -7,7 +7,7 @@
 html {
   block-size: 100%;
 }
-
+/* body */
 .page {
   inline-size: 1200px;
   block-size: 100%;
@@ -17,6 +17,7 @@ html {
   font-size: 18px;
   background-color: #1b1919;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -56,133 +57,119 @@ ol {
   background-color: #d9d9d9;
 }
 
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+
+/* Задайте грид для .content и пропишите grid-area для всех элементов внутри. */
+.content{
+  display: grid;
+  grid-auto-flow: column;
+  align-items: end;
+  grid-template-areas:
+    "result details"
+  ;
   gap: 30px;
   width: 1140px;
-  height: 534px;
 }
 
+/* Левая сторона области */
 .result {
-  display: flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 16px;
-height: 456px;
-width: 711px;
+  grid-area: "result";
 }
-
-.result__video-container {
+/* правая половина окна в которой можно выбрать видео */
+.content__details {
+  grid-area: "details";
   width: 100%;
   height: 100%;
-}
-
-.result__video {
-  object-fit:cover;
-  width: 100%;
-}
-
-.search-form {
-  gap: 40px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
-}
-
-.search-form__fieldset
-.search-form__fieldset-title
-.search-form__label
-.search-form__label-text
-.visually-hidden
-.search-form__textfield
-.search-form__checkbox-list
-.search-form__checkbox
-.search-form__pseudo-checkbox
-.button {
-  display: flex;
-width: 194px;
-height: 34px;
-justify-content: center;
-align-items: center;
-gap: 10px;
-flex-shrink: 0;
-}
-
-.search-form__submit-button
-.content__details {
-display: flex;
   flex-direction: column;
-  gap: 26px; 
+  align-items: flex-start;
+  gap: 26px;
 }
 
-.title {
-  color: #fff;
-  font-family: Oswald;
-  font-size: 75px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 94%;
-  text-transform: uppercase;
-  /* display: flex; */
+/* пареметры подбора видео */
+.search-form {
+  display: flex;
+  justify-content: space-between; /* Прижимает крайние элементы к стенкам */
+  gap: auto;
 }
-
-.content__accent {
-  color: #545050;
-  font-family: Oswald;
-  font-size: 75px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 94%; /* 70.5px */
-  text-transform: uppercase;
-}
-
+/* скрол */
 .content__list-container {
-  margin-top: 26px;
-  /* display: flex; */
-  /* width: 399px;
-padding: 0px 198px;
-align-items: flex-start; */
-height: 298px; /* или другой фиксированный размер */
+  height: 298px;
   overflow-y: auto;
 }
-
+/* контейнер в котором лежит видео */
+.result__video-container {
+  width: 711px;
+  height: 386px;
+  margin-bottom: 16px;
+}
+/* Само видео */
+.result__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* список карточек с видео */
 .content__list {
- display: flex;
-flex-direction: column;
-align-items: center;
-gap: 30px;
-align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap:30px
 }
-.cards-list-item-template
-.content__list-item {
-display: flex;
-align-items: center;
-align-self: stretch;
-gap: 30px;
-
-}
-
-.content__card-link
+/* карточка  */
 .content__video-card {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  display: flex;           /* Включаем flex-контейнер */
+  flex-direction: row;     /* Элементы в строку (по умолчанию) */
+  align-items: flex-start; /* Прижимаем к началу по вертикали (доп. оси) */
 }
+/* превью видео */
+.content__video-card-thumbnail {
+  width: 194px;
+  height: 103px;
+  object-fit: cover;
+  object-position: center;
+}
+/* контейнер с заголовком и описанием */
 .content__video-card-description-container {
-  display: flex;
+flex-grow: 1;
 width: 196px;
-height: 103px;
-flex-direction: column;
-align-items: flex-start;
-gap: 6px;
+}
+/* Титул контейнера пункта выбора */
+.search-form__fieldset-title {
+  color: #FFF;
+  font-family: "Fira Sans Condensed";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+/* титул правой половины окна */
+.title {
+  color: #FFF;
+  font-family: Oswald;
+  font-size: 75px;
+  font-style: normal;
+font-weight: 700;
+line-height: 94%;
+text-transform: uppercase;
 }
 
+/* доп стилизация заголовка */
+.content__accent {
+color: #545050;
+font-family: Oswald;
+font-size: 75px;
+font-style: normal;
+font-weight: 700;
+line-height: 94%; /* 70.5px */
+text-transform: uppercase;
+}
+/* ссылка */
+.content__card-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* заголовок карточкии */
 .content__video-card-title {
-align-self: stretch;
 color: #FFF;
 font-family: Oswald;
 font-size: 30px;
@@ -190,23 +177,153 @@ font-style: normal;
 font-weight: 700;
 line-height: 100%; /* 30px */
 text-transform: uppercase;
+white-space: nowrap;       /* Запрет переноса строк */
+overflow: hidden;          /* Скрытие переполнения */
+text-overflow: ellipsis;   /* Многоточие вместо обрезанного текста */
+margin-bottom: 6px;
 }
-
+/* описание карточки */
 .content__video-card-description {
-align-self: stretch;
 color: #FFF;
 font-family: "Fira Sans Condensed";
 font-size: 18px;
 font-style: normal;
 font-weight: 400;
 line-height: 16.2px; /* 90% */
+overflow: hidden;              /* Скрываем переполнение */
+display: -webkit-box;          /* Включаем старый механизм Flexbox */
+-webkit-line-clamp: 4;         /* Максимум 4 строки */
+-webkit-box-orient: vertical;  /* Вертикальное направление */
+text-overflow: ellipsis;       /* Добавляем "…" в конце */
 }
-.content__video-card-thumbnail {
-  width: 194px;
-height: 103px;
+/* Сделает label невидиым */
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+} 
+.search-form__checkbox-list {
+  display: flex;
+  gap: 15px;
 }
-      
-.more-button-template
-.button
+/* форма Контейнер пункта выбора */
+.search-form__fieldset {
+  border: none;
+}
 
-.error-template {}
+/* связывает текст-подпись с полем формы */
+.search-form__label {
+display: flex;
+width: fit-content;
+тут я перестал понимать и устал
+}
+
+
+Стилизуем левый input
+Задайте .search-form__label у инпутов для поиска городов и времени суток.
+Расставьте элементы внутри .search-form__label в линию. Примените свойство display: flex;. Также вам пригодится правило width: fit-content;.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* форма Контейнер пункта выбора */
+.search-form__fieldset {
+  
+}
+
+
+
+/* связывает текст-подпись с полем формы */
+.search-form__label
+
+/* то что прочитает скриндер */
+.search-form__label-text
+
+
+
+/* Вроде вводимый текст в форму */
+.search-form__textfield
+
+/* контейнер опроса утро день вечер */
+.search-form__checkbox-list
+
+/* для скриндера */
+.search-form__checkbox
+
+/* поиск -форма __ псевдо - флажок */
+.search-form__pseudo-checkbox
+
+/* кнопка */
+.button {
+
+}
+
+/* кнопка отправки формы поиска */
+.search-form__submit-button {
+
+}
+
+
+
+
+
+
+/* правая половина окна в которой можно выбрать видео */
+.content__details {
+
+}
+
+
+
+
+
+
+
+
+
+/* шаблон внутри которого список */
+.cards-list-item-template
+
+/* элементы списка */
+.content__list-item {
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* кнопка показать еще */
+.more-button {
+
+}
+/* крнтейнер кнопки */
+.more-button-template 
+
+/* шаблон ошибки */
+.error-template {
+  
+}

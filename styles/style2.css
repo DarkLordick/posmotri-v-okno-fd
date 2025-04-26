@@ -1,0 +1,153 @@
+/* Видимая область */
+.content {
+
+}
+
+
+
+
+/* Левая сторона области */
+.result {
+
+}
+
+/* контейнер в котором лежит видео */
+.result__video-container {
+
+}
+
+/* Само видео */
+.result__video {
+
+}
+
+
+
+
+/* пареметры подбора видео */
+.search-form {
+}
+
+/* форма Контейнер пункта выбора */
+.search-form__fieldset {
+  
+}
+
+/* Титул контейнера пункта выбора */
+.search-form__fieldset-title
+
+/* связывает текст-подпись с полем формы */
+.search-form__label
+
+/* то что прочитает скриндер */
+.search-form__label-text
+
+/* Сделает label невидиым */
+.visually-hidden {
+ 
+
+}
+
+/* Вроде вводимый текст в форму */
+.search-form__textfield
+
+/* контейнер опроса утро день вечер */
+.search-form__checkbox-list
+
+/* для скриндера */
+.search-form__checkbox
+
+/* поиск -форма __ псевдо - флажок */
+.search-form__pseudo-checkbox
+
+/* кнопка */
+.button {
+
+}
+
+/* кнопка отправки формы поиска */
+.search-form__submit-button {
+
+}
+
+
+
+
+
+
+/* правая половина окна в которой можно выбрать видео */
+.content__details {
+
+}
+
+/* титул правой половины окна */
+.title {
+
+}
+
+/* доп стилизация заголовка */
+.content__accent {
+
+}
+
+/* скролл контейнер для списка и кнопки загрзить еще */
+.content__list-container {
+
+}
+
+/* список карточек с видео */
+.content__list {
+
+}
+
+/* шаблон внутри которого список */
+.cards-list-item-template
+
+/* элементы списка */
+.content__list-item {
+
+
+}
+
+/* ссылка карточки (надо убрать подчеркивание) */
+.content__card-link {
+
+}
+
+/* карточка  */
+.content__video-card {
+
+}
+
+/* контейнер с заголовком и описанием */
+.content__video-card-description-container {
+
+}
+
+/* заголовок карточкии */
+.content__video-card-title {
+
+}
+
+/* описание карточки */
+.content__video-card-description {
+
+}
+
+/* превью видео */
+.content__video-card-thumbnail {
+
+}
+
+/* кнопка показать еще */
+.more-button {
+
+}
+/* крнтейнер кнопки */
+.more-button-template 
+
+/* шаблон ошибки */
+.error-template {
+  
+}
+
