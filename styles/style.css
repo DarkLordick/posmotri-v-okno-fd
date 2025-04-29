@@ -95,6 +95,7 @@ ol {
 .content__list-container {
   height: 298px;
   overflow-y: auto;
+  padding-right: 3px;
 }
 /* контейнер в котором лежит видео */
 .result__video-container {
@@ -140,6 +141,7 @@ width: 196px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: 5px;
 }
 /* титул правой половины окна */
 .title {
@@ -208,8 +210,9 @@ text-overflow: ellipsis;       /* Добавляем "…" в конце */
 } 
 .search-form__checkbox-list {
   display: flex;
-  /* flex-direction: row; */
+  justify-content: flex-start;
   gap: 15px;
+  align-items: center;
 }
 /* форма Контейнер пункта выбора */
 .search-form__fieldset {
@@ -222,9 +225,9 @@ display: flex;
 width: fit-content;
 align-items: center;
 justify-content: center;
-/* width: 229px; */
-height: 31px;
+padding: 2px;
 gap: 5px;
+cursor: pointer;
  
 }
 /* Вроде вводимый текст в форму */
@@ -255,53 +258,132 @@ gap: 5px;
   outline: 1px solid #FFF;
 }
 
-/* поиск -форма __ псевдо - флажок */
 .search-form__pseudo-checkbox {
   position: relative;
+  z-index: -1;
   width: 19px;
   height: 19px;
   border: 1px solid #fff;
   cursor: pointer;
-  display: flex;
+  display: inline-flex; /* Изменено на inline-flex */
   align-items: center;
   justify-content: center;
 }
 
 .search-form__pseudo-checkbox::after {
   content: '';
-  position: absolute;
-  width: 17px; /* На 1px меньше чекбокса */
-  height: 17px; /* На 1px меньше чекбокса */
+  position: relative;
+  z-index: -1;
+  width: 15px;
+  height: 15px;
   background-color: white;
-}
-.search-form__checkbox-input:checked + .search-form__pseudo-checkbox {
-  border-color: #fff; /* Синяя граница при выборе */
-  background-color: #fff;
-}
-
-.search-form__checkbox-input:checked + .search-form__pseudo-checkbox::after {
-    opacity: 1;
-  transform: scale(1);
+  opacity: 0; /* Добавлено */
+  transform: initial(0.5); /* Добавлено */
+  transition: all 0.2s ease; /* Добавлено */
 }
 
-/* Скрываем настоящий чекбокс */
-.search-form__checkbox-input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+/* Исправленный селектор */
+.search-form__checkbox:checked + .search-form__pseudo-checkbox {
+  border: 1px solid #fff;
+  
 }
-Не работает но что-то
 
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::after {
+  opacity: 1;
+  transform: initial(1);
+}
 
-Добавьте псевдоэлемент ::after. Белый фон, размер задан, как у чек-бокса. Когда будете стилизовать .search-form__pseudo-checkbox, учитывайте, что в нём появится элемент, который должен оказаться точно по центру. В макете внутренний квадрат включённого чек-бокса на один пиксель меньше самого чекбокса.
-Когда чекбокс активен (псевдокласс :checked) — отобразите внутри псевдоэлемент, который стилизовали в ::after.
-Факультативный шаг. Когда чекбокс в фокусе — добавьте границу вокруг с использованием outline . Если вы применяли псевдокласс :has() для текстового инпута, здесь тоже будет работать это правило. Вам не придётся прописывать отдельно состояние :focus и :focus-visible для чекбокса. Но если вы пошли другим путём, подумайте, как добиться того, чтобы состояние :focus не создавало обводку у родительского элемента, а состояние :focus-visible создавало.
-Декорируйте текст — сделайте так, чтобы при наведении на чекбокс у текста появлялось подчёркивание. Обратите внимание, что оно должно появляться при наведении на любую точку лейбла, а не только на сам текст.
+/* Скрытый чекбокс (оставить как есть) */
+.search-form__checkbox {
+  position: relative;
+  z-index: -1;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.search-form__checkbox:focus {
+  outline: none;
+}
+
+.search-form__label:has(.search-form__checkbox:focus-visible) {
+  outline: 1px solid #FFF;
+}
+
+/* то что прочитает скриндер */
+.search-form__label-text {
+  display: flex;
+  align-items: center;
+  
+  border: none;
+  
+  
+  background-color: transparent;
+  color: #fff;
+  font-family: "Fira Sans Condensed";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  outline: none;
+  appearance: none;
+}
+.search-form__label-text {
+  /* margin-left: 8px; */
+  transition: border-bottom 0.2s ease; /* Плавное появление */
+}
+
+/* Подчёркивание при наведении на ЛЮБУЮ часть лейбла */
+.search-form__label:hover .search-form__label-text {
+  border-bottom: 1px solid #fff;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  color: #FFF;
+  text-align: center;
+  font-family: "Fira Sans Condensed";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  border: 1px solid #FFF;
+  background-color: transparent;
+  cursor: pointer;
+}
+.search-form__submit-button {
+  width: 194px;
+  height: 34px;
+  align-self: flex-end;
+}
+
+.more-button {
+  margin: 30px 2px 2px 2px;
+  
+  display: flex;
+  width: 390px;
+  height: 34px;
+  flex-direction: column;
+  
+}
+.button:hover {
+text-decoration: underline;
+}
+.button:active {
+  background: #545050;
+}
+.button:focus {
+  outline: none;
+}
+.button:focus-visible {
+  outline: 1px solid #fff !important;
+  outline-offset: 1px;
+}
+
 Шаг 5. Стилизуем кнопки и их состояния
 На странице две кнопки: одна в форме, другая в списке карточек. У них есть общие стили, но у кнопки в списке карточек есть и собственные. Чтобы всё сделать как надо, созданы три класса: .button , .search-form__submit-button и .more-button. Подумайте, какие стили должны быть в каждом из них.
 Сделайте общий класс кнопки. Задайте границу, цвет, шрифт и прозрачный фон.
