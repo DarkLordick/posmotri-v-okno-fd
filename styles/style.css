@@ -68,6 +68,7 @@ ol {
   ;
   gap: 30px;
   width: 1140px;
+  /* padding-bottom: 2px; */
 }
 
 /* Левая сторона области */
@@ -117,6 +118,7 @@ ol {
 }
 /* карточка  */
 .content__video-card {
+  border: 2px solid transparent;
   display: flex;           /* Включаем flex-контейнер */
   flex-direction: row;     /* Элементы в строку (по умолчанию) */
   align-items: flex-start; /* Прижимаем к началу по вертикали (доп. оси) */
@@ -166,8 +168,10 @@ text-transform: uppercase;
 }
 /* ссылка */
 .content__card-link {
+  /* border: 1px solid #fff; */
   text-decoration: none;
   color: #fff;
+  display: block;
 }
 
 /* заголовок карточкии */
@@ -224,10 +228,9 @@ text-overflow: ellipsis;       /* Добавляем "…" в конце */
 display: flex;
 width: fit-content;
 align-items: center;
-justify-content: center;
-padding: 2px;
-gap: 5px;
+/* padding: 2px; */
 cursor: pointer;
+justify-content: space-between;
  
 }
 /* Вроде вводимый текст в форму */
@@ -249,6 +252,7 @@ cursor: pointer;
   line-height: normal;
   outline: none;
   appearance: none;
+  /* margin: 2PX; */
 }
 .search-form__textfield:focus {
   outline: none;
@@ -256,6 +260,7 @@ cursor: pointer;
 
 .search-form__label:has(.search-form__textfield:focus-visible) {
   outline: 1px solid #FFF;
+  outline-offset: 1px;
 }
 
 .search-form__pseudo-checkbox {
@@ -300,6 +305,7 @@ cursor: pointer;
   opacity: 0;
   width: 0;
   height: 0;
+  margin: 0;
 }
 
 .search-form__checkbox:focus {
@@ -308,6 +314,7 @@ cursor: pointer;
 
 .search-form__label:has(.search-form__checkbox:focus-visible) {
   outline: 1px solid #FFF;
+  outline-offset: 1px;
 }
 
 /* то что прочитает скриндер */
@@ -329,13 +336,13 @@ cursor: pointer;
   appearance: none;
 }
 .search-form__label-text {
-  /* margin-left: 8px; */
-  transition: border-bottom 0.2s ease; /* Плавное появление */
+  margin-left: 5px;
+  transition: text-decoration 0.2s ease; /* Плавное появление */
 }
 
 /* Подчёркивание при наведении на ЛЮБУЮ часть лейбла */
 .search-form__label:hover .search-form__label-text {
-  border-bottom: 1px solid #fff;
+  text-decoration: underline;
 }
 
 .button {
@@ -384,6 +391,34 @@ text-decoration: underline;
   outline-offset: 1px;
 }
 
+.content__video-card:hover {
+text-decoration: underline;
+}
+.content__video-card:active {
+  background: #545050;
+}
+
+.content__card-link:focus {
+ outline: none;
+}
+
+.content__card-link:focus-visible .content__video-card {
+  border: 1px solid #fff;
+  /* outline: 1px solid #fff; */
+}
+
+
+
+.content__video-card {
+  border: 2px solid transparent;
+  display: flex;           /* Включаем flex-контейнер */
+  flex-direction: row;     /* Элементы в строку (по умолчанию) */
+  align-items: flex-start; /* Прижимаем к началу по вертикали (доп. оси) */
+}
+/* шаблон ошибки */
+.error-template {
+  display: block;
+}
 Шаг 5. Стилизуем кнопки и их состояния
 На странице две кнопки: одна в форме, другая в списке карточек. У них есть общие стили, но у кнопки в списке карточек есть и собственные. Чтобы всё сделать как надо, созданы три класса: .button , .search-form__submit-button и .more-button. Подумайте, какие стили должны быть в каждом из них.
 Сделайте общий класс кнопки. Задайте границу, цвет, шрифт и прозрачный фон.
